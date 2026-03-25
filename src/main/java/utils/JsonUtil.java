@@ -2,30 +2,32 @@ package utils;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import models.testdata.LoginTestData;
 
 import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
 
 public class JsonUtil {
-    private static final LoginTestData LOGIN_TEST_DATA;
-    static {
+
+    public static <T> T getJsonData(String path, TypeReference<T> typeReference) {
         try {
 
             ObjectMapper mapper = new ObjectMapper();
             InputStream is = JsonUtil.class
                     .getClassLoader()
-                    .getResourceAsStream("testdata/LoginPageTestData.json");
+                    .getResourceAsStream(path);
 
-            LOGIN_TEST_DATA= mapper.readValue(
+            return mapper.readValue(
                     is,
-                    new TypeReference<LoginTestData>() {}
+                    typeReference
             );
         } catch (Exception e) {
             throw new RuntimeException("Failed to read JSON file", e);
         }
     }
-    public static LoginTestData getloginTestData() {
-        return LOGIN_TEST_DATA;
+
+    public static <T> T getTestDataFromList(Map<String, T> testDataList, String testCaseName) {
+        return testDataList.get(testCaseName);
     }
 }
 

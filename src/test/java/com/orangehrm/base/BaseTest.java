@@ -11,7 +11,10 @@ public class BaseTest {
 
     @BeforeMethod
     public void setup() {
-        String browser = ConfigReader.getBrowser();
+        String browser = System.getProperty("browser") != null
+                ? System.getProperty("browser")
+                : ConfigReader.getBrowser();
+        System.out.println(">>> Running tests on browser: " + browser);
         driver = BrowserDriverFactory.initializeDriver(browser);
         driver.get(ConfigReader.getAppUrl());
     }

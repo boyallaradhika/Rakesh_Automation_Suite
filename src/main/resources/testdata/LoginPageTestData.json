@@ -1,6 +1,10 @@
 {
-  "validUsername": "Admin",
-  "validPassword": "admin123",
-  "invalidUsername": "admin01",
-  "invalidPassword": "admin"
+  "tc01" : {
+    "username": "Admin",
+    "password": "admin123"
+  },
+  "tc02": {
+    "username": "admin01",
+    "password": "admin"
+  }
 }

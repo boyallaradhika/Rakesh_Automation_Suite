@@ -17,7 +17,9 @@ public class ConfigReader {
             throw new RuntimeException(e);
         }
     }
-
+    public static String getProperty(String key) {
+        return properties.getProperty(key);
+    }
     public static String getBrowser() {
         return properties.getProperty("browser");
     }
@@ -28,8 +30,11 @@ public class ConfigReader {
     public static int getimplicitWait() {
         return Integer.parseInt(properties.getProperty("implicit.wait"));
     }
-    public static int getimplicitWait(int timeout) {
-        return Integer.parseInt(properties.getProperty("implicit.wait"));
+    public static String getReportPath() {
+        return properties.getProperty("extent.report.path");
+    }
+    public static String getReportName() {
+        return properties.getProperty("extent.report.name");
     }
 
 }
